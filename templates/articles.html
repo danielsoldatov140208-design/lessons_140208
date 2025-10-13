@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Статьи</title>
+</head>
+<body>
+    <h1>Список статей</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <strong>{{ article.title|upper }}</strong> - 
+                 {% if "и" in article.author %}:
+                    <b>{{ article.author }}</b>
+                    {% else %}
+                        {{ article.author }}
+                    {% endif %}
+                ({{ article.author|length }} символов)      
+            </li>
+        {% endfor %}
+    </ul>
+    {% if articles|length > 2 %}
+        <p>Много статей!</p>
+    {% else %}
+        <p>Статей мало.</p>
+    {% endif %}
+</body>
+</html>
