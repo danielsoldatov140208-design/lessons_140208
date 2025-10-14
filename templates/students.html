@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>
+    Группа {{ group_info.name }}, специальность: {{ group_info.specialty }} ({{ group_info.year }})
+</h2>
+
+<ol>
+    {% for student in students %}
+        <li>{{ student.name }} — {{ student.age }} лет — {{ student.group }}</li>
+    {% endfor %}
+</ol>
+
+<p><strong>Всего студентов:</strong> {{ students|length }}</p>
+{% endblock %}
