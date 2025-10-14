@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <title>{% block title %}Мой сайт{% endblock %}</title>
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
    <header>
@@ -12,11 +12,12 @@
        <nav>
            <a href="/">Главная</a> |
            <a href="/about/">О нас</a> |
-           <a href="/contact/">Контакты</a>
+           <a href="/contact/">Контакты</a>|
+           <a href="/home/">тестовая кнопка</a>
        </nav>
        <hr>
    </header>
-
+    <img src="{% static 'banner.jpg' %}" alt="Картинка" width="1500" height="800">
    <main>
        {% block content %}
        <!-- Здесь будет основной контент -->

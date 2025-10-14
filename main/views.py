@@ -5,7 +5,7 @@ def base(request):
     return HttpResponse("главная страница моего сайта")\
 
 def home(request):
-    return HttpResponse("домашняя страница")
+    return render(request, "home.html")
 
 def about(request):
     return HttpResponse("Обо мне")
@@ -18,8 +18,6 @@ class HelloView(View):
         name = request.GET.get("name", "гость")
         return HttpResponse(f"Привет, {name}!")
     
-def news_view(request):
-    return render(request, 'news.html')
 
 def news_view(request):
     news = [
