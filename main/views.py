@@ -66,3 +66,6 @@ def login(request):
         else:
             response = f"Привет {username}, Твое сообщение получено: {message}"
     return render(request, 'login.html', {'response': response})
+
+def article(request, article_id):
+    return HttpResponse(f"Вы просматриваете статью с номером:{article_id}.")
