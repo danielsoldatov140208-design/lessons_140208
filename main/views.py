@@ -35,16 +35,6 @@ def articles_view(request):
     ]
     return render(request, 'articles.html', {'articles': articles})
 
-
-def students_view(request):
-    # Рендерит шаблон со списком студентов (templates/students.html)
-    return render(request, 'students.html')
-
-
-def login(request):
-    # Простая страница логина (templates/login.html)
-    return render(request, 'login.html')
-
 def students_view(request):
     students = [
         {"name": "Айжан", "age": 19, "group": "IT-23A"},
@@ -64,3 +54,15 @@ def students_view(request):
     }
 
     return render(request, 'students.html', context)
+
+
+def login(request):
+    response = None
+    if request.method == 'POST':
+        username = request.POST.get('name')
+        message = request.POST.get('message')
+        if username=="" or message=="":
+            response = "Пожалуйста, заполните все поля."
+        else:
+            response = f"Привет {username}, Твое сообщение получено: {message}"
+    return render(request, 'login.html', {'response': response})
