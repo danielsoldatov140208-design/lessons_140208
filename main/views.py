@@ -67,5 +67,20 @@ def login(request):
             response = f"Привет {username}, Твое сообщение получено: {message}"
     return render(request, 'login.html', {'response': response})
 
-def article(request, article_id):
-    return HttpResponse(f"Вы просматриваете статью с номером:{article_id}.")
+def article(request, id):
+    return HttpResponse(f"Вы просматриваете статью с номером:{id}.")
+def user(request, username):
+    return HttpResponse(f"Профиль пользователя: {username}")
+
+articles = [
+   {"id": 1, "title": "Django основы"},
+   {"id": 2, "title": "Шаблоны в Django"},
+   {"id": 3, "title": "ORM и базы данных"}
+]
+
+def article_detail(request, id):
+   article = next((a for a in articles if a["id"] == id), None)
+   if article:
+       return HttpResponse(f"Статья: {article['title']}")
+   else:
+       return HttpResponse("Статья не найдена")
