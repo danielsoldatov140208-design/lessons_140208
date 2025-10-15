@@ -35,6 +35,16 @@ def articles_view(request):
     ]
     return render(request, 'articles.html', {'articles': articles})
 
+
+def students_view(request):
+    # Рендерит шаблон со списком студентов (templates/students.html)
+    return render(request, 'students.html')
+
+
+def login(request):
+    # Простая страница логина (templates/login.html)
+    return render(request, 'login.html')
+
 def students_view(request):
     students = [
         {"name": "Айжан", "age": 19, "group": "IT-23A"},
