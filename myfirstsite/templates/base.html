@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <title>{% block title %}Мой сайт{% endblock %}</title>
+   <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+   <header>
+       <h1>Мой сайт</h1>
+       <nav>
+           <a href="/">Главная</a> |
+           <a href="/about/">О нас</a> |
+           <a href="/contact/">Контакты</a>|
+           <a href="/home/">тестовая кнопка</a> |
+           <a href="/students/">Студенты</a> |
+           <a href="/user/Daniel/">Профиль Даниэля</a>
+       </nav>
+       <hr>
+   </header>
+    
+   <main>
+       {% block content %}
+       <!-- Здесь будет основной контент -->
+       {% endblock %}
+       {% block sidebar %}
+         <!-- Здесь будет сайдбар -->
+       {% endblock %}
+       {% block extra_scripts %}
+         <!-- Здесь будут дополнительные скрипты -->
+         {% endblock %}
+
+   </main>
+   <img src="{% static 'banner.jpg' %}" alt="Картинка" width="1500" height="800">
+   <footer>
+       <hr>
+       <p>© 2025 Мой сайт</p>
+   </footer>
+</body>
+</html>

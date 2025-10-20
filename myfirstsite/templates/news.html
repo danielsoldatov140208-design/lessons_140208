@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+   <h2>Добро пожаловать на сайт!</h2>
+   <p>Это страница новостей.</p>
+{% endblock %}
+{% block sidebar %}
+{% if news %}
+   <h3>Последние новости</h3>
+   <ul>
+       {% for item in news %}
+           <li>{{ item.title }}: {{ item.text }}</li>
+       {% endfor %}
+   </ul>
+{% endif %}
+{% endblock %}
+{% block extra_scripts %}
+ <script>    alert("Добро пожаловать в раздел новостей!"); </script> 
+ {% endblock %}
