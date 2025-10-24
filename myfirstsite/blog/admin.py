@@ -1,9 +1,15 @@
 from django.contrib import admin
-from .models import Category, Article, Author   , Tag       
+from .models import Category, Article, Author   , Tag  ,Book     
 
 class ArticleInline(admin.TabularInline):
     model = Article
     extra = 1
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "author", "year", "price", "available")
+    list_filter = ("available", "year")
+    search_fields = ("title", "author")
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
