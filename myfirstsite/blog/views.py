@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Book
-from .forms import BookForm
+from .forms import BookForm, StudentForm
 from django.shortcuts import redirect
 
 def blog_home(request):
@@ -64,3 +64,20 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('books_view')
     return render(request, 'confirm_delete.html', {'book': book})
+
+def student_form_view(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save()
+            return HttpResponse(
+                f"Форма успешно отправлена!<br>"
+                f"Имя: {student.name}<br>"
+                f"Возраст: {student.age}<br>"
+                f"Email: {student.email}<br>"
+                f"Группа: {student.group}"
+            )
+    else:
+        form = StudentForm()
+
+    return render(request, 'student_form.html', {'form': form})
