@@ -16,6 +16,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Содержание")
     author = models.ForeignKey('Author', on_delete=models.CASCADE, verbose_name="Автор")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     tags = models.ManyToManyField(
     'Tag',
     blank=True,

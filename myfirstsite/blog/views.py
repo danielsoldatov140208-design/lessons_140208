@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Book
+from .models import Book,Article
 from .forms import BookForm, StudentForm
-from django.shortcuts import redirect
+from django.db.models.functions import Length,Coalesce
+from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Count,Func, Value
 
 def blog_home(request):
     return HttpResponse("Это блог-раздел моего сайта")
@@ -55,8 +57,7 @@ def edit_book(request, book_id):
         form = BookForm(instance=book)
     return render(request, 'edit.html', {'form': form, 'book': book})
 
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Book
+
 
 def delete_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
@@ -81,3 +82,21 @@ def student_form_view(request):
         form = StudentForm()
 
     return render(request, 'student_form.html', {'form': form})
+
+def articles_view(request):
+    articles = (
+        Article.objects.annotate(content_length=Length('content'))
+        .filter(content_length__gt=50)
+        .order_by('-created_at')
+    )
+    total = articles.count()
+    author_counts = (
+        Article.objects.values('author')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+    )
+    return render(request, 'articles.html', {
+        'articles': articles,
+        'total': total,
+        'author_counts': author_counts
+    })
